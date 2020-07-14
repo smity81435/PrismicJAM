@@ -1,7 +1,8 @@
 <template>
   <div class="hello">
     <h1>{{ fields.home_title }}</h1>
-    <prismic-image class="iceCream" :field="fields.image" />
+    <prismic-image class="blackCat" :field="fields.image" />
+    <prismic-rich-text class="homeexplain" :field="fields.richtext" />
   </div>
 </template>
 
@@ -38,9 +39,32 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.iceCream {
+.blackCat {
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  left: 0;
   width: 100%;
+  height: 100%;
 }
+.hello {
+  padding: 4.5rem 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 30rem;
+}
+.hello > h1 {
+  color: white;
+  font-weight: 300;
+}
+.homeexplain {
+  color: white;
+  font-weight: 600;
+  width: 75%;
+  margin: 0 auto;
+}
+
 h3 {
   margin: 40px 0 0;
 }
