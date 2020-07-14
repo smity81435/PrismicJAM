@@ -1,8 +1,8 @@
 <template>
   <div class="hello">
-    <h1>{{ fields.home_title }}</h1>
-    <prismic-image class="blackCat" :field="fields.image" />
-    <prismic-rich-text class="homeexplain" :field="fields.richtext" />
+    <prismic-rich-text v-if="fields.home_title" class="" :field="fields.home_title" wrapper="h1" />
+    <prismic-image v-if="fields.image" class="blackCat" :field="fields.image" />
+    <prismic-rich-text v-if="fields.richtext" class="homeexplain" :field="fields.richtext" />
   </div>
 </template>
 
@@ -13,7 +13,7 @@ export default {
   data() {
     return {
       fields: {
-        home_title: '',
+        home_title: null,
         richtext: null,
         image: null,
       },
@@ -26,7 +26,7 @@ export default {
     async getContent() {
       const page = await this.$prismic.client.getSingle('homepage')
       const data = page.data
-      this.fields.home_title = data.home_title[0].text
+      this.fields.home_title = data.home_title
       this.fields.richtext = data.richtext
       this.fields.image = data.image
     },
@@ -49,6 +49,8 @@ export default {
   height: 100%;
 }
 .hello {
+  background-color: rgba(0, 0, 0, 0.308);
+  border-radius: 10px;
   padding: 4.5rem 5%;
   display: flex;
   flex-direction: column;
